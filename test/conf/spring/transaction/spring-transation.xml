@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="    
+    http://www.springframework.org/schema/beans      
+    http://www.springframework.org/schema/beans/spring-beans-3.2.xsd      
+    http://www.springframework.org/schema/context      
+    http://www.springframework.org/schema/context/spring-context-3.2.xsd     
+    http://www.springframework.org/schema/aop     
+    http://www.springframework.org/schema/aop/spring-aop-3.2.xsd     
+    http://www.springframework.org/schema/tx     
+    http://www.springframework.org/schema/tx/spring-tx-3.2.xsd">
+
+	<!-- 事务通知 -->
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="delete*" propagation="REQUIRED" read-only="false"
+				rollback-for="java.lang.Exception" />
+			<tx:method name="save*" propagation="REQUIRED" read-only="false"
+				rollback-for="java.lang.Exception" />
+			<tx:method name="insert*" propagation="REQUIRED" read-only="false"
+				rollback-for="java.lang.Exception" />
+			<tx:method name="update*" propagation="REQUIRED" read-only="false"
+				rollback-for="java.lang.Exception" />
+			<tx:method name="remove*" propagation="REQUIRED" read-only="false"
+				rollback-for="java.lang.Exception" />
+			<tx:method name="process*" propagation="REQUIRED"
+				read-only="false" rollback-for="java.lang.Exception" />
+			<tx:method name="insert*" propagation="REQUIRED" read-only="false"
+				rollback-for="java.lang.Exception"  />
+
+			<tx:method name="find*" propagation="SUPPORTS" />
+			<tx:method name="get*" propagation="SUPPORTS" />
+			<tx:method name="select*" propagation="SUPPORTS" />
+		</tx:attributes>
+	</tx:advice>
+	
+   <!--事务切面 -->
+	<aop:config>
+	    <!--BaseService层事务控制 -->
+		<aop:pointcut id="baseServiceTx"
+			expression="execution(public * com.test.core.baseservice..*.*(..))" />
+		<aop:advisor pointcut-ref="baseServiceTx" advice-ref="txAdvice" />
+	</aop:config>
+	<aop:config>
+	    <!--Service层事务控制 -->
+		<aop:pointcut id="serviceTx"
+			expression="execution(public * com.test.biz.service..*.*(..))" />
+		<aop:advisor pointcut-ref="serviceTx" advice-ref="txAdvice" />
+	</aop:config>
+	
+   <!--事务管理器-->
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="nestedTransactionAllowed" value="true" />
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+</beans>

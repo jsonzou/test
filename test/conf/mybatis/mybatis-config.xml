@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+    PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+
+<!--配置数据库方言-->
+   <properties>    
+       <!--<property name="dialect" value="com.test.core.mybatis.plugin.paging.dialect.OracleDialect"/>-->
+           <property name="dialect" value="com.test.core.mybatis.plugin.paging.dialect.MySQLDialect"/>    
+   </properties>  
+
+<!-- 设置缓存等  -->
+	<settings>
+		<setting name="cacheEnabled" value="true"/> 
+		<setting name="lazyLoadingEnabled" value="false" />
+		<setting name="defaultStatementTimeout" value="10000"/>
+	</settings>
+	
+	  
+	
+	<plugins>
+       <!--mybatis分页插件-->
+		<plugin interceptor="com.test.core.mybatis.plugin.paging.PagingPlugin"/>
+	</plugins>
+
+
+</configuration>
