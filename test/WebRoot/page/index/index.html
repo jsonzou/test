@@ -1,0 +1,41 @@
+<#import "/fmklib/refs.html" as r>
+<!DOCTYPE html>
+<html>
+<head>
+	 <title>首页</title>
+	 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <@r.ref/>
+</head>
+<body>
+	 
+	<div class="easyui-layout" style="width:700px;height:350px;">
+        <!-- top-->
+		<div data-options="region:'north'" style="height:50px"></div>
+		
+		<!-- bottom-->
+		<div data-options="region:'south',split:true" style="height:50px;"></div>
+	    
+	    <!-- left-->
+		<div data-options="region:'west',split:true" title="West" style="width:100px;">
+			<div class="easyui-accordion" data-options="fit:true,border:false">
+				<div title="Title1" style="padding:10px;">
+					<a href="${contextPath}/test/user">content1</a>
+				</div>
+				<div title="Title2" data-options="selected:true" style="padding:10px;">
+					content2
+				</div>
+				<div title="Title3" style="padding:10px">
+					content3
+				</div>
+			</div>
+		</div>
+		
+		<!-- center-->
+		<div data-options="region:'center',title:'主面板',iconCls:'icon-ok'">
+			<div class="easyui-tabs" data-options="fit:true,border:false,plain:true">
+				<div title="首页" data-options="href:'_content.html'" style="padding:10px"></div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
