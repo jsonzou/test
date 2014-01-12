@@ -10,7 +10,7 @@ import com.test.biz.service.IUserService;
 import com.test.core.baseservice.BaseService;
 
 @Service("userService")
-public class UserService extends BaseService implements IUserService {
+public class UserServiceImpl extends BaseService implements IUserService {
 
 	@Override
 	public List<User> list() {
