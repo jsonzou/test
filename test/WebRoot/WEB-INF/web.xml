@@ -84,24 +84,8 @@
     <dispatcher>FORWARD</dispatcher>
     <dispatcher>INCLUDE</dispatcher>
   </filter-mapping>
-<!--
-  <servlet-mapping>
-    <servlet-name>DispatcherServlet</servlet-name>
-    <url-pattern>/</url-pattern>
-  </servlet-mapping>
- -->  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-<!--freemarker configration-->
   <servlet>
-  <servlet-name>freemarker</servlet-name>
+    <servlet-name>freemarker</servlet-name>
     <servlet-class>
    com.test.core.freemarker.FreemarkerServletSupport
   </servlet-class>
